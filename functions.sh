@@ -182,6 +182,8 @@ function backup_target() {
       cpOpts="-a"
       [ -n "$DB_DUMP_KEEP_PERMISSIONS" -a "$DB_DUMP_KEEP_PERMISSIONS" = "false" ] && cpOpts=""
       cp $cpOpts ${TMPDIR}/${SOURCE} ${uri[path]}/${TARGET}
+      #allow the file to be copied elsewhere
+      chmod -R go+rw ${uri[path]}
       ;;
     "s3")
       # allow for endpoint url override
